@@ -1,6 +1,6 @@
 import e from "express";
 import { AddNewCourier, displayAllCouriers } from "../controllers/couriers.controller.js";
-import { addNewPackages, cancelPackage, displayAllPackages } from "../controllers/package.controller.js";
+import { addNewPackages, cancelPackage, displayAllPackages, displayPackageById } from "../controllers/package.controller.js";
 
 const router = e.Router()
 
@@ -10,8 +10,8 @@ router.get('/api/couriers', displayAllCouriers) //Memperlihatkan daftar Kurir ya
 
 // //Paket
 router.post('/api/packages', addNewPackages) //menambahkan paket baru
-router.get('/api/packages', displayAllPackages) 
-// router.get('/api/packages/:id',)
+router.get('/api/packages', displayAllPackages)
+router.get('/api/packages/:id', displayPackageById)
 router.delete('/api/packages/:id', cancelPackage)
 
 // //Tracking

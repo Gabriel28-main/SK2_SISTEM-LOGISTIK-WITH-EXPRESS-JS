@@ -21,7 +21,7 @@ export const addNewPackages = async (req, res) => {
     }
 }
 
-export const displayAllPackages = async (req, res) => {
+export const displayAllPackages = async (_, res) => {
     try {
         const query = `SELECT * FROM packages`
         const [rows] = await db.execute(query)
@@ -48,6 +48,25 @@ export const cancelPackage = async (req, res) => {
             status: 'success',
             message: 'berhasil cancel paket'
         })
+    } catch (error) {
+        return res.status(500).json({
+            message: error.message
+        })
+    }
+}
+
+export const displayPackageById = async (req, res) => {
+    try {
+        const { id } = req.params
+        const query = 'SELECT * FROM packages WHERE packageId = ?'
+        const [rows] = await db.execute(query, [id])
+
+
+        return res.status(200).json({
+            status: 'success',
+            data: rows
+        })
+
     } catch (error) {
         return res.status(500).json({
             message: error.message
