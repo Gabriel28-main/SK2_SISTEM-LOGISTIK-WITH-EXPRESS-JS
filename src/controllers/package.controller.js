@@ -3,13 +3,9 @@ import db from "../config/db.js";
 export const addNewPackages = async (req, res) => {
     try {
         const { namaBarang, penerima, alamatTujuan } = req.body
-        const firstUpdate = [{
-            status: "Pending",
-            updatedAt: new Date()
-        }]
 
-        const query = `INSERT INTO packages (itemName, receiver, history) VALUES (?, ?, ?)`
-        await db.execute(query, [namaBarang, penerima, firstUpdate])
+        const query = `INSERT INTO packages (itemName, receiver, destinationAddress	) VALUES (?, ?, ?)`
+        await db.execute(query, [namaBarang, penerima, alamatTujuan])
 
         return res.status(201).json({
             status: 'success'

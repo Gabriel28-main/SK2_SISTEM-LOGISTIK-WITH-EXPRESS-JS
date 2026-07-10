@@ -1,6 +1,7 @@
 import e from "express";
 import { AddNewCourier, displayAllCouriers } from "../controllers/couriers.controller.js";
 import { addNewPackages, cancelPackage, displayAllPackages, displayPackageById } from "../controllers/package.controller.js";
+import { trackPackage } from "../controllers/tracking.controller.js";
 
 const router = e.Router()
 
@@ -15,7 +16,7 @@ router.get('/api/packages/:id', displayPackageById)
 router.delete('/api/packages/:id', cancelPackage)
 
 // //Tracking
-// router.post('/api/tracking',)
+router.post('/api/tracking', trackPackage)
 
 
 export default router
