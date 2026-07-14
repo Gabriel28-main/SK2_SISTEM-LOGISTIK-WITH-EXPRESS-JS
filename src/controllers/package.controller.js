@@ -7,6 +7,7 @@ export const addNewPackages = async (req, res) => {
         const query = `INSERT INTO packages (itemName, receiver, destinationAddress	) VALUES (?, ?, ?)`
         await db.execute(query, [namaBarang, penerima, alamatTujuan])
 
+
         return res.status(201).json({
             status: 'success'
         })
@@ -57,10 +58,12 @@ export const displayPackageById = async (req, res) => {
         const query = 'SELECT * FROM packages WHERE packageId = ?'
         const [rows] = await db.execute(query, [id])
 
-
         return res.status(200).json({
             status: 'success',
-            data: rows
+            data: {
+                rows,
+                
+            }
         })
 
     } catch (error) {
